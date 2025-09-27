@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title or "文具比價平台" }}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- 直接內嵌 CSS -->
+  <style>
+    /* 背景 & 字體 */
+    body {
+      background-color: #f8f9fa;
+      font-family: "Microsoft JhengHei", sans-serif;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    /* hero 專屬 */
+    .hero {
+      background: linear-gradient(135deg, #322f2f, #2b2d2e);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* 搜尋欄 & 按鈕 */
+    #query {
+      height: 2.5rem;
+      font-size: 1rem;
+    }
+
+    #btnSearch {
+      height: 2.5rem;
+      width: 5rem;
+      font-size: 1rem;
+      background-color: #ff9900;
+      border-color: #ff9900;
+      color: white;
+    }
+
+    #btnSearch:hover {
+      background-color: #e68a00;
+      border-color: #e68a00;
+    }
+
+    /* 商品方框樣式 */
+    .card {
+      border-radius: 12px;
+      width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      color: #0066cc;
+    }
+
+    /* 價格凸顯 */
+    .price-highlight {
+      font-size: 1.3rem;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="/">比價平台</a>
+    </div>
+  </nav>
+
+  <!-- 主內容 -->
+  <main class="container my-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

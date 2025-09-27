@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% set page_title = '文具商品比價平台' %}
+
+{% block content %}
+<div class="hero mx-auto">
+  <h1>商品比價平台</h1>
+  <p>輸入商品內容，進行比價</p>
+  <div class="row justify-content-center">
+    <div class="col-lg-10 d-flex">
+      <input type="text" class="form-control me-2" id="query" placeholder="例如：原子筆"> 
+      <button class="btn" id="btnSearch">
+        搜尋
+        <span class="spinner-border spinner-border-sm d-none"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="results" class="mt-4 d-flex flex-column align-items-center"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function() {
+  function doSearch() {
+    const q = $('#query').val();
+    if (!q) return alert("請輸入商品名稱！");
+    $('#btnSearch > span').removeClass('d-none');
+
+    $.getJSON('/search', { query: q })
+      .done(function(data) {
+        if (!Array.isArray(data)) {
+          $('#results').html('<div class="alert alert-danger">伺服器回傳資料格式錯誤</div>');
+          return;
+        }
+        let html = '';
+        data.forEach(item => {
+          const prices = item.prices.filter(p => p.price !== null);
+          if (prices.length === 0) return;
+          prices.sort((a,b) => a.price - b.price);
+
+          html += `<div class="card shadow-sm">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${item.img || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(item.name)}" 
+                     class="img-fluid rounded-start" alt="${item.name}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${item.name}</h5>`;
+          prices.forEach((p, idx) => {
+            const priceStyle = idx === 0 ? 'price-highlight' : '';
+            html += `<p class="mb-1"><strong class="${priceStyle}">${p.price} 元</strong> 
+                        <span class="text-muted">(${p.site})</span>
+                        ${p.url ? `<a href="${p.url}" target="_blank">前往購買</a>` : ''}</p>`;
+          });
+          html += `
+                </div>
+              </div>
+            </div>
+          </div>`;
+        });
+        $('#results').html(html);
+      })
+      .fail(function() {
+        $('#results').html('<div class="alert alert-danger">伺服器錯誤</div>');
+      })
+      .always(function() {
+        $('#btnSearch > span').addClass('d-none');
+      });
+  }
+
+  $('#btnSearch').on('click', doSearch);
+  $('#query').on('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+});
+</script>
+{% endblock %}
