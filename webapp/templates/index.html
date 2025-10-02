@@ -14,6 +14,14 @@
       </button>
     </div>
   </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-lg-10">
+      <span class="me-2">熱門關鍵字：</span>
+      <button type="button" class="btn btn-outline-primary btn-sm me-1 keyword-btn">原子筆</button>
+      <button type="button" class="btn btn-outline-primary btn-sm me-1 keyword-btn">藍筆</button>
+      <button type="button" class="btn btn-outline-primary btn-sm me-1 keyword-btn">立可帶</button>
+    </div>
+  </div>
 </div>
 
 <div id="results" class="mt-4 d-flex flex-column align-items-center"></div>
@@ -71,6 +79,14 @@ $(function() {
       });
   }
 
+  // 熱門關鍵字功能
+  $('.keyword-btn').on('click', function() {
+  const word = $(this).text();
+  $('#query').val(word);
+  $('#btnSearch').click();  // 點了就直接搜尋
+  });
+
+  // 搜尋按鈕
   $('#btnSearch').on('click', doSearch);
   $('#query').on('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
