@@ -36,5 +36,5 @@
 
 ### 實際操作
 - [Youtube 影片錄製](https://youtu.be/xub4aX9nCNI?si=f3QBvtg3-PwYx0DI)
-- 網頁呈現畫面( Youtube  截圖)
- ![網頁節骨](https://hackmd.io/_uploads/H17HIM_pxx.png)
+- 網頁呈現畫面
+ ![Youtube  截圖](https://hackmd.io/_uploads/H17HIM_pxx.png)
