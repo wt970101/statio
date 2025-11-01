@@ -35,6 +35,6 @@
 ### 網站頁面
 
 ### 實際操作
-- [Youtube 影片錄製](https://youtu.be/xub4aX9nCNI?si=f3QBvtg3-PwYx0DI)
+- [Youtube 執行操作影片](https://youtu.be/xub4aX9nCNI?si=f3QBvtg3-PwYx0DI)
 - 網頁呈現畫面
  ![文具比價照片](https://github.com/wt970101/statio/blob/main/webapp/photo/%E6%96%87%E5%85%B7%E6%AF%94%E5%83%B9.png)
